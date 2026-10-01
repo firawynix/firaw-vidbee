@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 
 const RYBBIT_READY_POLL_INTERVAL_MS = 250
 const RYBBIT_SCRIPT_ID = 'vidbee-rybbit-script'
-const RYBBIT_SCRIPT_SITE_ID = '7bc6f6d625a4'
-const RYBBIT_SCRIPT_SRC = 'https://rybbit.102417.xyz/api/script.js'
+const RYBBIT_SCRIPT_SITE_ID = import.meta.env.VITE_FIRAW_ANALYTICS_SITE_ID?.trim() ?? ''
+const RYBBIT_SCRIPT_SRC = import.meta.env.VITE_FIRAW_ANALYTICS_SCRIPT_URL?.trim() ?? ''
 
 export const useRybbitScript = (enabled: boolean): boolean => {
   const [isReady, setIsReady] = useState(false)
@@ -26,7 +26,7 @@ export const useRybbitScript = (enabled: boolean): boolean => {
       }
     }
 
-    if (!enabled) {
+    if (!(enabled && RYBBIT_SCRIPT_SITE_ID && RYBBIT_SCRIPT_SRC)) {
       document.getElementById(RYBBIT_SCRIPT_ID)?.remove()
       stopReadyPoll()
       setIsReady(false)

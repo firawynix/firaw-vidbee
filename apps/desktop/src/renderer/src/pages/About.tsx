@@ -57,10 +57,15 @@ export function About() {
   const appVersionLabel = appVersion || '—'
   const [latestVersionState, setLatestVersionState] = useState<LatestVersionState>(null)
   const [updateDownloadProgress, setUpdateDownloadProgress] = useState<number | null>(null)
+  const [autoUpdateEnabled, setAutoUpdateEnabled] = useState(false)
   const websiteUrl = buildLocalizedVidBeeUrl('/', i18n.language)
   const downloadUrl = buildLocalizedVidBeeUrl('/download/', i18n.language)
   const changelogUrl = buildLocalizedVidBeeUrl('/changelog/', i18n.language)
   const shareTargetUrl = websiteUrl
+
+  useEffect(() => {
+    void ipcServices.update.isAutoUpdateEnabled().then(setAutoUpdateEnabled)
+  }, [])
 
   useEffect(() => {
     if (!updateAvailableState.available) {
@@ -220,7 +225,9 @@ export function About() {
         : 'text-muted-foreground'
   const latestVersionStatusText = latestVersionStatusKey ? t(latestVersionStatusKey) : null
   const shouldShowCheckUpdates =
-    !updateAvailableState.available && latestVersionState?.status !== 'available'
+    autoUpdateEnabled &&
+    !updateAvailableState.available &&
+    latestVersionState?.status !== 'available'
 
   const aboutResources = useMemo<AboutResource[]>(
     () => [
@@ -250,11 +257,11 @@ export function About() {
           <CardContent className="p-0">
             <div className="space-y-4 px-6 pt-6 pb-4">
               <div className="flex items-center gap-4">
-                <img alt="VidBee" className="h-18 w-18 rounded-2xl" src="./app-icon.png" />
+                <img alt="Firaw - VidBee" className="h-18 w-18 rounded-2xl" src="./app-icon.png" />
                 <div className="flex-1 space-y-2">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                      <h2 className="font-semibold text-2xl leading-tight">{t('about.appName')}</h2>
+                      <h2 className="font-semibold text-2xl leading-tight">Firaw - VidBee</h2>
                       <Badge variant="secondary">
                         {t('about.versionLabel', { version: appVersionLabel })}
                       </Badge>
@@ -275,7 +282,7 @@ export function About() {
                       <Button asChild size="sm" variant="outline">
                         <a
                           aria-label={t('about.actions.openRepo')}
-                          href="https://github.com/nexmoe/vidbee"
+                          href="https://github.com/firawynix/firaw-vidbee"
                           rel="noreferrer"
                           target="_blank"
                         >
@@ -337,7 +344,7 @@ export function About() {
               </div>
               <Switch
                 aria-label={t('about.autoUpdateTitle')}
-                checked
+                checked={autoUpdateEnabled}
                 disabled
                 label=""
                 onToggle={() => undefined}

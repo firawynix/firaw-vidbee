@@ -79,10 +79,10 @@ export const AppShell = ({ children, page }: AppShellProps) => {
 	return (
 		<div className="flex h-screen flex-row">
 			<AppSidebar
-				appName="VidBee"
+				appName="Firaw - VidBee"
 				bottomItems={bottomItems}
 				items={items}
-				logoAlt="VidBee"
+				logoAlt="Firaw - VidBee"
 				logoSrc="/app-icon.png"
 			/>
 

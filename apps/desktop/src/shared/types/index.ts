@@ -397,7 +397,7 @@ export const defaultSettings: AppSettings = {
   launchAtLogin: false,
   autoUpdate: true,
   subscriptionOnlyLatestDefault: true,
-  enableAnalytics: true,
+  enableAnalytics: false,
   enableDownloadNotifications: true,
   rememberLastAudioLanguage: true,
   preferredAudioLanguage: '',

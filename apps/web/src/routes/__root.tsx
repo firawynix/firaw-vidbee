@@ -22,7 +22,7 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "VidBee Web",
+				title: "Firaw - VidBee | Video download",
 			},
 		],
 		links: [
@@ -40,7 +40,7 @@ export const Route = createRootRoute({
  */
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="pt-BR">
 			<head>
 				<HeadContent />
 			</head>

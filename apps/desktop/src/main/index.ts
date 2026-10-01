@@ -33,6 +33,7 @@ import {
 } from './lib/auth-client'
 import { downloadEngine } from './lib/download-facade'
 import { ffmpegManager } from './lib/ffmpeg-manager'
+import { firawUpdateFeedUrl, isFirawUpdateConfigured } from './lib/firaw-update-feed'
 import {
   addMainBreadcrumb,
   captureMainException,
@@ -1052,8 +1053,8 @@ function registerVidbeeProtocol(): void {
 }
 
 function initAutoUpdater(): void {
-  if (isPortableMode) {
-    log.info('Portable mode is active, skipping auto-updater initialization')
+  if (isPortableMode || !isFirawUpdateConfigured) {
+    log.info('No Firaw update feed is configured, skipping auto-updater initialization')
     return
   }
 
@@ -1062,6 +1063,7 @@ function initAutoUpdater(): void {
 
     log.transports.file.level = 'info'
     autoUpdater.logger = log
+    autoUpdater.setFeedURL({ provider: 'generic', url: firawUpdateFeedUrl })
     autoUpdater.autoDownload = true
     autoUpdater.autoInstallOnAppQuit = true
 
@@ -1198,7 +1200,7 @@ app.on('open-file', (event, filePath) => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(async () => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId('com.vidbee')
+  electronApp.setAppUserModelId('com.firawynix.vidbee')
   settingsManager.applyFreshInstallLocale()
 
   registerVidbeeProtocol()

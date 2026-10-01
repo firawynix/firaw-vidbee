@@ -298,7 +298,7 @@ export const AboutPage = () => {
 							<div className="space-y-4 px-6 pt-6 pb-4">
 								<div className="flex items-center gap-4">
 									<img
-										alt="VidBee"
+										alt="Firaw - VidBee"
 										className="h-18 w-18 rounded-2xl"
 										src="/app-icon.png"
 									/>
@@ -306,7 +306,7 @@ export const AboutPage = () => {
 										<div className="flex items-center justify-between gap-4">
 											<div className="flex items-center gap-3">
 												<h2 className="font-semibold text-2xl leading-tight">
-													{t("about.appName")}
+													Firaw - VidBee
 												</h2>
 												<Badge variant="secondary">
 													{t("about.versionLabel", {
@@ -334,7 +334,7 @@ export const AboutPage = () => {
 												<Button asChild size="sm" variant="outline">
 													<a
 														aria-label={t("about.actions.openRepo")}
-														href="https://github.com/nexmoe/vidbee"
+														href="https://github.com/firawynix/firaw-vidbee"
 														rel="noreferrer"
 														target="_blank"
 													>

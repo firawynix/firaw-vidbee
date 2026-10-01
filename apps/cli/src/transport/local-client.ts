@@ -28,7 +28,7 @@ import type { ContractClient, ListInput } from '../subcommands'
 const require = createRequire(import.meta.url)
 
 export interface LocalClientOptions {
-  /** Default download directory. Defaults to `~/Downloads/VidBee`. */
+  /** Default download directory. Defaults to `~/Downloads/Firaw-VidBee`. */
   defaultDownloadDir?: string
   /** Persistence: in-memory (default) or sqlite (for crash-recovery). */
   persist?: 'memory' | 'sqlite'
@@ -66,7 +66,7 @@ export async function createLocalClient(opts: LocalClientOptions = {}): Promise<
   const downloaderCore = await import('@vidbee/downloader-core')
   const tqDb = await import('@vidbee/db/task-queue')
 
-  const defaultDir = opts.defaultDownloadDir ?? join(homedir(), 'Downloads', 'VidBee')
+  const defaultDir = opts.defaultDownloadDir ?? join(homedir(), 'Downloads', 'Firaw-VidBee')
 
   let tempDir: string | null = null
   let sqliteDb: { close: () => void } | null = null

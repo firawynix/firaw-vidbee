@@ -5,7 +5,7 @@ export type FilenameStyle = (typeof FILENAME_STYLES)[number]
 export const DEFAULT_FILENAME_STYLE: FilenameStyle = 'pretty'
 export const DEFAULT_FILENAME_VIA_VIDBEE = true
 
-export const VIA_VIDBEE_LABEL = 'via VidBee'
+export const VIA_VIDBEE_LABEL = 'via Firaw - VidBee'
 export const DEFAULT_FILENAME_TEMPLATE = '%(title)s.%(ext)s'
 export const SHARED_FILENAME_TEMPLATE = `%(title)s ${VIA_VIDBEE_LABEL}.%(ext)s`
 

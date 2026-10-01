@@ -39,7 +39,7 @@ const resolveDefaultDownloadPath = () => {
     return getPortableDownloadsPath()
   }
 
-  return path.join(os.homedir(), 'Downloads', 'VidBee')
+  return path.join(os.homedir(), 'Downloads', 'Firaw-VidBee')
 }
 
 const DEFAULT_DOWNLOAD_PATH = resolveDefaultDownloadPath()

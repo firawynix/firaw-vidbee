@@ -10,7 +10,7 @@
       "view": "Ver",
       "visit": "Visitar"
     },
-    "appName": "VidBee",
+    "appName": "Firaw - VidBee",
     "autoUpdateDescription": "Baixar e instalar novas versões automaticamente em segundo plano.",
     "autoUpdateTitle": "Atualizações automáticas",
     "description": "Baixe mídias de mais de 1000 sites, crie transcrições pesquisáveis no seu computador e use o provedor de IA que você escolher para resumir, traduzir ou fazer perguntas, tudo em um app gratuito e de código aberto para desktop.",
@@ -132,7 +132,7 @@
   },
   "app": {
     "description": "Baixe mídias, transcreva localmente e pergunte à IA",
-    "title": "VidBee",
+    "title": "Firaw - VidBee",
     "quitConfirm": {
       "title": "Sair do VidBee?",
       "message": "{{count}} tarefa ainda está em andamento. Sair a interromperá.",
@@ -690,7 +690,7 @@
     },
     "system": "Sistema",
     "theme": "Tema",
-    "themeDescription": "Escolha um tema claro, escuro ou sistema para VidBee",
+    "themeDescription": "Escolha um tema claro, escuro ou sistema para Firaw - VidBee",
     "title": "Configurações",
     "tray": {
       "quit": "Sair",
@@ -711,11 +711,11 @@
       "original": "Original (padrão do yt-dlp)",
       "webm": "WebM"
     },
-    "autoTranscribeAfterDownload": "Transcribe after download",
+    "autoTranscribeAfterDownload": "Transcrever após o download",
     "autoTranscribeAfterDownloadDescription": "When a download finishes, start a local transcript in the background. This uses your computer and skips files with no speech. Already queued jobs are not cancelled if you turn this off",
     "maxConcurrentTranscriptions": "Número máximo de transcrições ativas",
     "maxConcurrentTranscriptionsDescription": "Quantas transcrições podem ser executadas ao mesmo tempo. Cada tarefa usa este computador. Diminuir o valor não interrompe as tarefas em andamento",
-    "transcriptModelsTitle": "Transcript models",
+    "transcriptModelsTitle": "Modelos de transcrição",
     "transcriptModelsReady": "Models ready on disk ({{size}})",
     "transcriptModelsMissing": "Models are not downloaded yet. The first transcript will fetch them",
     "transcriptModelsRedownload": "Redownload",
@@ -1755,17 +1755,17 @@
     }
   },
   "web": {
-    "saveToThisComputer": "Save to this computer",
-    "copyServerPath": "Copy server path",
-    "serverPathCopied": "Server path copied",
-    "downloadPathDescription": "Where the VidBee server saves files. In Docker this is usually /data/downloads.",
-    "autoTranscribeAfterDownloadDescription": "When a download finishes, start a transcript on the VidBee server. Already queued jobs keep running if you turn this off.",
-    "maxConcurrentTranscriptionsDescription": "How many transcripts can run at once on the server.",
-    "transcriptModelsDescription": "Speech models are stored on the VidBee server. The first transcript downloads them there.",
-    "cookiesFileOnly": "The server cannot read browsers on your computer. Export a Netscape cookies.txt and upload it.",
-    "storageTitle": "Server storage",
-    "storageDownloadDir": "Download directory",
-    "storageDataDir": "Data directory",
-    "storageDbFile": "SQLite database"
+    "saveToThisComputer": "Salvar neste computador",
+    "copyServerPath": "Copiar caminho no servidor",
+    "serverPathCopied": "Caminho do servidor copiado",
+    "downloadPathDescription": "Pasta em que o servidor Firaw - VidBee salva os arquivos. No Docker, costuma ser /data/downloads.",
+    "autoTranscribeAfterDownloadDescription": "Quando um download terminar, iniciar uma transcrição no servidor Firaw - VidBee. As tarefas já enfileiradas continuam se esta opção for desligada.",
+    "maxConcurrentTranscriptionsDescription": "Quantas transcrições podem ser executadas ao mesmo tempo no servidor.",
+    "transcriptModelsDescription": "Os modelos de voz ficam no servidor Firaw - VidBee. A primeira transcrição faz o download deles.",
+    "cookiesFileOnly": "O servidor não consegue ler os navegadores deste computador. Exporte um arquivo Netscape cookies.txt e envie-o.",
+    "storageTitle": "Armazenamento do servidor",
+    "storageDownloadDir": "Pasta de downloads",
+    "storageDataDir": "Pasta de dados",
+    "storageDbFile": "Banco de dados SQLite"
   }
 }

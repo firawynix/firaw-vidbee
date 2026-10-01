@@ -68,12 +68,12 @@ const packageJson = JSON.parse(
 
 const createTelemetryDefines = (mode: string): Record<string, string> => {
   const env = loadEnv(mode, process.cwd(), '')
-  const release = env.VITE_GLITCHTIP_RELEASE || `vidbee-desktop@${packageJson.version}`
+  const release = env.VITE_FIRAW_GLITCHTIP_RELEASE || `firaw-vidbee@${packageJson.version}`
   const environment =
-    env.VITE_GLITCHTIP_ENVIRONMENT || (mode === 'production' ? 'production' : mode)
+    env.VITE_FIRAW_GLITCHTIP_ENVIRONMENT || (mode === 'production' ? 'production' : mode)
 
   return {
-    __GLITCHTIP_DSN__: JSON.stringify(env.VITE_GLITCHTIP_DSN || ''),
+    __GLITCHTIP_DSN__: JSON.stringify(env.VITE_FIRAW_GLITCHTIP_DSN || ''),
     __GLITCHTIP_ENVIRONMENT__: JSON.stringify(environment),
     __GLITCHTIP_RELEASE__: JSON.stringify(release)
   }

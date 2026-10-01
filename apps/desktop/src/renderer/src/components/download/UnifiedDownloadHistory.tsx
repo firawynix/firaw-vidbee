@@ -574,7 +574,20 @@ export function UnifiedDownloadHistory({
 
   return (
     <div className={cn('flex h-full flex-col')}>
-      <CardHeader className="z-50 gap-4 bg-background p-0 px-6 py-4 backdrop-blur">
+      <CardHeader className="z-50 gap-4 border-border border-b bg-background/95 p-0 px-6 py-5 backdrop-blur">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <p className="font-bold text-primary text-xs uppercase tracking-[0.2em]">
+              Firawynix / Media
+            </p>
+            <h1 className="mt-1 font-semibold text-2xl text-foreground tracking-tight">
+              Video download
+            </h1>
+          </div>
+          <span className="rounded-full border border-border bg-card px-3 py-1 font-medium text-muted-foreground text-xs">
+            Firaw - VidBee
+          </span>
+        </div>
         <DownloadFilterBar
           actions={
             <div className="flex items-center gap-2">

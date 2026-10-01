@@ -8,7 +8,6 @@ import {
 	normalizeSubtitleLanguages,
 } from "@vidbee/downloader-core/subtitle-languages";
 import {
-	defaultLanguageCode,
 	type LanguageCode,
 	normalizeLanguageCode,
 } from "@vidbee/i18n/languages";
@@ -93,7 +92,7 @@ export const defaultWebSettings: WebAppSettings = {
 	cookiesPath: "",
 	proxy: "",
 	configPath: "",
-	language: defaultLanguageCode,
+	language: "pt",
 	theme: "system",
 	oneClickDownload: true,
 	oneClickDownloadType: "video",
@@ -102,7 +101,7 @@ export const defaultWebSettings: WebAppSettings = {
 	closeToTray: true,
 	autoUpdate: true,
 	subscriptionOnlyLatestDefault: true,
-	enableAnalytics: true,
+	enableAnalytics: false,
 	downloadSubtitles: true,
 	subtitleLanguages: [...DEFAULT_SUBTITLE_LANGUAGES],
 	embedSubs: true,

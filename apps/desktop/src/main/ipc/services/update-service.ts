@@ -1,6 +1,7 @@
 import { app } from 'electron'
 import { type IpcContext, IpcMethod, IpcService } from 'electron-ipc-decorator'
 import { autoUpdater } from 'electron-updater'
+import { isFirawUpdateConfigured } from '../../lib/firaw-update-feed'
 import { allowAppQuit } from '../../lib/quit-confirmation-host'
 import { isPortableMode } from '../../portable'
 
@@ -38,7 +39,7 @@ class UpdateService extends IpcService {
   async checkForUpdates(
     _context: IpcContext
   ): Promise<{ available: boolean; version?: string; error?: string }> {
-    if (isPortableMode) {
+    if (isPortableMode || !isFirawUpdateConfigured) {
       return {
         available: false,
         version: app.getVersion()
@@ -71,7 +72,7 @@ class UpdateService extends IpcService {
 
   @IpcMethod()
   async downloadUpdate(_context: IpcContext): Promise<{ success: boolean; error?: string }> {
-    if (isPortableMode) {
+    if (isPortableMode || !isFirawUpdateConfigured) {
       return {
         success: false,
         error: 'Auto-update is disabled in portable mode'
@@ -91,7 +92,7 @@ class UpdateService extends IpcService {
 
   @IpcMethod()
   quitAndInstall(_context: IpcContext): void {
-    if (isPortableMode) {
+    if (isPortableMode || !isFirawUpdateConfigured) {
       return
     }
 
@@ -106,7 +107,7 @@ class UpdateService extends IpcService {
 
   @IpcMethod()
   isAutoUpdateEnabled(_context: IpcContext): boolean {
-    return !isPortableMode
+    return !isPortableMode && isFirawUpdateConfigured
   }
 }
 

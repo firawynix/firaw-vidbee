@@ -110,7 +110,7 @@ export interface DownloaderCoreOptions {
   runtimeSettings?: DownloadRuntimeSettings
 }
 
-const DEFAULT_DOWNLOAD_DIR = path.join(os.homedir(), 'Downloads', 'VidBee')
+const DEFAULT_DOWNLOAD_DIR = path.join(os.homedir(), 'Downloads', 'Firaw-VidBee')
 const DEFAULT_MAX_CONCURRENT = 3
 const MAX_TASK_LOG_LENGTH = 80_000
 const FFMPEG_NOT_FOUND_ERROR =

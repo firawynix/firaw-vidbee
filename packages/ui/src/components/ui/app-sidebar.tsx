@@ -58,7 +58,6 @@ function SidebarNavItem({ item, index, hovered, registerItem }: SidebarNavItemPr
   const buttonRef = useRef<HTMLButtonElement>(null)
   const isActive = Boolean(item.active)
   const IconComponent = isActive || hovered ? item.icon.active : item.icon.inactive
-  const showLabel = item.showLabel ?? true
 
   useRegisterProximityItem(registerItem, index, buttonRef as RefObject<HTMLElement | null>)
 
@@ -66,14 +65,14 @@ function SidebarNavItem({ item, index, hovered, registerItem }: SidebarNavItemPr
     <Button
       aria-label={item.label}
       className={cn(
-        'relative z-10 h-12 w-12 rounded-2xl hover:bg-transparent hover:text-inherit',
+        'relative z-10 h-11 w-11 justify-center gap-3 rounded-xl px-0 hover:bg-transparent hover:text-inherit sm:w-full sm:justify-start sm:px-3',
         isActive && 'text-primary'
       )}
       data-proximity-index={index}
       disabled={item.disabled}
       onClick={item.onClick}
       ref={buttonRef}
-      size="icon"
+      size="default"
       variant="ghost"
     >
       {item.avatar ? (
@@ -88,6 +87,7 @@ function SidebarNavItem({ item, index, hovered, registerItem }: SidebarNavItemPr
       ) : (
         <IconComponent className={cn('h-5! w-5!', isActive && 'text-primary')} />
       )}
+      <span className="hidden truncate font-medium text-sm sm:inline">{item.label}</span>
       {item.indicator ? (
         <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500" />
       ) : null}
@@ -95,7 +95,7 @@ function SidebarNavItem({ item, index, hovered, registerItem }: SidebarNavItemPr
   )
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex w-full flex-col items-center gap-1">
       {item.showTooltip ? (
         <Tooltip>
           <TooltipTrigger asChild>{button}</TooltipTrigger>
@@ -106,12 +106,6 @@ function SidebarNavItem({ item, index, hovered, registerItem }: SidebarNavItemPr
       ) : (
         button
       )}
-
-      {showLabel ? (
-        <span className="w-full max-w-20 px-1 text-center text-muted-foreground text-xs leading-tight">
-          {item.label}
-        </span>
-      ) : null}
     </div>
   )
 }
@@ -139,7 +133,7 @@ function SidebarNavGroup({ items }: SidebarNavGroupProps) {
 
   return (
     <NoDrag
-      className="relative flex flex-col items-center gap-2"
+      className="relative flex w-full flex-col items-center gap-1 px-2 sm:px-3"
       data-slot="sidebar-nav-group"
       ref={containerRef}
       {...handlers}
@@ -150,7 +144,7 @@ function SidebarNavGroup({ items }: SidebarNavGroupProps) {
         itemRects={itemRects}
         selectedIndex={selectedIndex >= 0 ? selectedIndex : null}
         sessionRef={sessionRef}
-        shapeClassName="rounded-2xl"
+        shapeClassName="rounded-xl"
       />
       {items.map((item, index) => (
         <SidebarNavItem
@@ -187,16 +181,16 @@ export function AppSidebar({
     <DragRegion
       asChild
       className={cn(
-        'flex w-20 min-w-20 max-w-20 flex-col items-center gap-2 border-border/60 border-r bg-background/77 py-4',
+        'flex w-16 min-w-16 max-w-16 flex-col items-center gap-4 border-border/70 border-r bg-sidebar py-4 sm:w-56 sm:min-w-56 sm:max-w-56',
         className
       )}
     >
       <aside>
-        <div className="mt-4 flex flex-col items-center gap-1 py-3">
-          <div className="flex h-12 w-12 items-center justify-center">
+        <div className="mt-4 flex w-full items-center justify-center gap-3 px-3 py-3 sm:justify-start">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center">
             <img alt={logoAlt} className="h-10 w-10" src={logoSrc} />
           </div>
-          <span className="text-center font-bold text-muted-foreground text-xs leading-tight">
+          <span className="hidden text-left font-bold text-sidebar-foreground text-sm leading-tight sm:block">
             {appName}
           </span>
         </div>

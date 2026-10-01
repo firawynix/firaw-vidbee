@@ -64,7 +64,7 @@ export const languages = {
 
 export type LanguageCode = keyof typeof languages
 
-export const defaultLanguageCode: LanguageCode = 'en'
+export const defaultLanguageCode: LanguageCode = 'pt'
 
 export const languageList = Object.entries(languages).map(([code, definition]) => ({
   value: code as LanguageCode,

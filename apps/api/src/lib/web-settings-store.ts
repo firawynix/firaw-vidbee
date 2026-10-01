@@ -19,7 +19,7 @@ const defaultWebSettings = WebAppSettingsSchema.parse({
   closeToTray: true,
   autoUpdate: true,
   subscriptionOnlyLatestDefault: true,
-  enableAnalytics: true,
+  enableAnalytics: false,
   downloadSubtitles: true,
   subtitleLanguages: [...DEFAULT_SUBTITLE_LANGUAGES],
   embedSubs: true,

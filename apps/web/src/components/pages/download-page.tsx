@@ -663,7 +663,20 @@ export const DownloadPage = () => {
 	return (
 		<AppShell page="download">
 			<div className={cn("flex h-full flex-col")}>
-				<CardHeader className="z-50 gap-4 bg-background p-0 px-6 py-4 backdrop-blur">
+				<CardHeader className="z-50 gap-4 border-b border-border bg-background/95 p-0 px-6 py-5 backdrop-blur">
+					<div className="flex flex-wrap items-end justify-between gap-2">
+						<div>
+							<p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+								Firawynix / Media
+							</p>
+							<h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
+								Video download
+							</h1>
+						</div>
+						<span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
+							Firaw - VidBee
+						</span>
+					</div>
 					<DownloadFilterBar
 						actions={<DownloadDialog onDownloadsChanged={refreshData} />}
 						activeFilter={platformFilter}
@@ -707,7 +720,7 @@ export const DownloadPage = () => {
 											});
 										}}
 									>
-										{t("history.cookiesTipAction")}
+										{t("history.cookiesTipCta")}
 									</Button>
 								</div>
 							</div>

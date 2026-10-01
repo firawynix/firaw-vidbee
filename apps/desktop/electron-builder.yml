@@ -1,5 +1,5 @@
-appId: com.vidbee
-productName: VidBee
+appId: com.firawynix.vidbee
+productName: Firaw - VidBee
 compression: maximum
 directories:
   buildResources: build
@@ -108,10 +108,23 @@ extraResources:
   # longer ships a `vidbee` shim. Users install the CLI explicitly with
   # `npm install -g @vidbee/cli` (or one of the other channels).
 win:
-  executableName: vidbee
+  executableName: Firaw-VidBee
   target:
     - nsis
     - portable
+appx:
+  applicationId: FirawVidBee
+  identityName: Firawynix.Firaw-VidBee-Videodownload
+  publisher: CN=1FDE3668-C222-4506-AFE6-E2E425EAECD8
+  publisherDisplayName: Firawynix
+  displayName: Firaw - VidBee - Video download
+  backgroundColor: '#0c1726'
+  languages:
+    - pt-BR
+    - en-US
+  capabilities:
+    - runFullTrust
+    - internetClient
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
@@ -148,7 +161,3 @@ appImage:
 asarUnpack:
   - node_modules/sherpa-onnx-*/**
 npmRebuild: true
-publish:
-  provider: github
-  owner: nexmoe
-  repo: vidbee

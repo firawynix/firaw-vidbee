@@ -3,11 +3,12 @@ import type { VideoFormat } from './types'
 type FormatType = 'video' | 'audio'
 
 const isVideoFormat = (format: VideoFormat): boolean =>
-  format.videoExt !== 'none' && !!format.vcodec && format.vcodec !== 'none'
+  format.videoExt !== 'none' &&
+  (Boolean(format.vcodec && format.vcodec !== 'none') || Boolean(format.videoExt))
 
 const isAudioFormat = (format: VideoFormat): boolean =>
-  !!format.acodec &&
-  format.acodec !== 'none' &&
+  ((!!format.acodec && format.acodec !== 'none') ||
+    Boolean(format.audioExt && format.audioExt !== 'none')) &&
   (format.videoExt === 'none' || !format.videoExt || !format.vcodec || format.vcodec === 'none')
 
 export const filterFormatsByType = <T extends VideoFormat>(

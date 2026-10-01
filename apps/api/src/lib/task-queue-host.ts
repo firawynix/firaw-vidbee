@@ -69,6 +69,13 @@ const apiWorkerCandidates = [
 const apiWorkerScript =
   apiWorkerCandidates.find((candidate) => fs.existsSync(candidate)) ?? apiWorkerCandidates[0]
 
+const resolveFfmpegExecutable = (): string | null => {
+  const location = resolveFfmpegLocation()
+  if (!location) return null
+  const binary = path.join(location, process.platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg')
+  return fs.existsSync(binary) ? binary : null
+}
+
 const persist = persistEnabled
   ? new SqlitePersistAdapter({
       db: sharedSqlite as unknown as ConstructorParameters<typeof SqlitePersistAdapter>[0]['db'],
@@ -86,11 +93,11 @@ const transcriptionExecutor = new TranscriptionExecutor({
   modelsDir: apiModelsDir,
   execArgv: apiWorkerScript.endsWith('.ts') ? ['--import', 'tsx'] : undefined,
   resolveFfmpegPath: () => {
-    const loc = resolveFfmpegLocation()
-    if (!loc) {
+    const binary = resolveFfmpegExecutable()
+    if (!binary) {
       throw new Error('ffmpeg not found')
     }
-    return fs.existsSync(path.join(loc, 'ffmpeg')) ? path.join(loc, 'ffmpeg') : loc
+    return binary
   },
   backend: process.env.VIDBEE_TRANSCRIPTION_BACKEND === 'fake' ? 'fake' : 'sherpa'
 })
@@ -127,8 +134,7 @@ const coordinator = new AutoTranscriptionCoordinator({
   isEnabled: () => autoEnabled,
   resolveSourceFile: (task) => task.output?.filePath ?? null,
   tryImportCaptions: async ({ downloadTaskId, sourceFilePath }) => {
-    const loc = resolveFfmpegLocation()
-    const binary = loc && fs.existsSync(path.join(loc, 'ffmpeg')) ? path.join(loc, 'ffmpeg') : loc
+    const binary = resolveFfmpegExecutable()
     const settings = await (await import('./web-settings-store')).webSettingsStore.get()
     const preferredLanguages = preferredCaptionLanguages(settings.language)
     const record = await importCaptionsForDownload({

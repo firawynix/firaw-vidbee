@@ -2,6 +2,7 @@
 @import "@vidbee/ui/theme.css";
 @import "tw-animate-css";
 @import "@vidbee/ui/base.css";
+@import "@vidbee/ui/firaw-brand.css";
 @import "streamdown/styles.css";
 @import "katex/dist/katex.min.css";
 @import "./view-transitions.css";
@@ -22,8 +23,8 @@
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     monospace;
-  --accent: #e5e5e5;
-  --accent-foreground: #171717;
+  --accent: #ddf5fa;
+  --accent-foreground: #0b6f89;
 }
 
 @theme inline {
@@ -40,8 +41,8 @@
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     monospace;
-  --accent: #525252;
-  --accent-foreground: #f5f5f5;
+  --accent: #19465b;
+  --accent-foreground: #77e4f7;
 }
 
 /* Keep prose readable while allowing tables, diagrams, and code to use the full output width. */

@@ -51,7 +51,7 @@ export function createTray(): void {
 
   tray = new Tray(trayIconImage)
 
-  tray.setToolTip('VidBee')
+  tray.setToolTip('Firaw - VidBee')
   bindTrayMenuApplier((menu) => {
     tray?.setContextMenu(menu)
   })

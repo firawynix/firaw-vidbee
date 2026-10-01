@@ -1,0 +1,76 @@
+/* Shared Firawynix visual identity for the desktop and self-hosted web app. */
+:root {
+  --background: #f3f7fa;
+  --foreground: #12263a;
+  --card: #ffffff;
+  --card-foreground: #12263a;
+  --popover: #ffffff;
+  --popover-foreground: #12263a;
+  --primary: #087f9e;
+  --primary-foreground: #ffffff;
+  --secondary: #dff5fa;
+  --secondary-foreground: #0d546b;
+  --muted: #e8f0f4;
+  --muted-foreground: #52677a;
+  --accent: #ddf5fa;
+  --accent-foreground: #0b6f89;
+  --border: #d5e3eb;
+  --input: #ffffff;
+  --ring: #15b9d7;
+  --sidebar: #eaf2f6;
+  --sidebar-foreground: #19384b;
+  --sidebar-primary: #087f9e;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d7f1f7;
+  --sidebar-accent-foreground: #075f79;
+  --sidebar-border: #c8dbe5;
+  --sidebar-ring: #15b9d7;
+  --focus-ring: #15b9d7;
+  --radius: 0.875rem;
+  --font-sans: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+}
+
+.dark {
+  --background: #0c1726;
+  --foreground: #e8f6fa;
+  --card: #132538;
+  --card-foreground: #e8f6fa;
+  --popover: #132538;
+  --popover-foreground: #e8f6fa;
+  --primary: #30c8e5;
+  --primary-foreground: #092232;
+  --secondary: #214457;
+  --secondary-foreground: #e8f6fa;
+  --muted: #1b3447;
+  --muted-foreground: #aec8d4;
+  --accent: #19465b;
+  --accent-foreground: #77e4f7;
+  --border: #2b4c60;
+  --input: #193247;
+  --ring: #30c8e5;
+  --sidebar: #102338;
+  --sidebar-foreground: #d5eef5;
+  --sidebar-primary: #30c8e5;
+  --sidebar-primary-foreground: #092232;
+  --sidebar-accent: #1c455b;
+  --sidebar-accent-foreground: #77e4f7;
+  --sidebar-border: #2b4c60;
+  --sidebar-ring: #30c8e5;
+  --focus-ring: #30c8e5;
+  --surface-1: #102338;
+  --surface-2: #142a3f;
+  --surface-3: #193247;
+  --surface-4: #1d394f;
+  --surface-5: #224056;
+  --surface-6: #27475d;
+  --surface-7: #2c4e64;
+  --surface-8: #31556b;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+[data-slot="sidebar-nav-group"] button[data-proximity-index] {
+  min-width: 0;
+}

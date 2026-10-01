@@ -6,9 +6,17 @@ $DistDir = Join-Path $AppDir 'dist'
 $PackageJson = Get-Content -LiteralPath (Join-Path $AppDir 'package.json') -Raw | ConvertFrom-Json
 $Version = $PackageJson.version
 $WinUnpackedDir = Join-Path $DistDir 'win-unpacked'
-$PortableDir = Join-Path $DistDir 'VidBee-portable'
+$PortableDir = Join-Path $DistDir 'Firaw-VidBee-portable'
 $AppOutputDir = Join-Path $PortableDir 'app'
-$ZipPath = Join-Path $DistDir "vidbee-$Version-windows-portable.zip"
+$ZipPath = Join-Path $DistDir "firaw-vidbee-$Version-windows-portable.zip"
+
+$ResolvedDist = [System.IO.Path]::GetFullPath($DistDir).TrimEnd([System.IO.Path]::DirectorySeparatorChar)
+$ResolvedPortable = [System.IO.Path]::GetFullPath($PortableDir)
+$ResolvedZip = [System.IO.Path]::GetFullPath($ZipPath)
+if (-not $ResolvedPortable.StartsWith($ResolvedDist + [System.IO.Path]::DirectorySeparatorChar, [System.StringComparison]::OrdinalIgnoreCase) -or
+    -not $ResolvedZip.StartsWith($ResolvedDist + [System.IO.Path]::DirectorySeparatorChar, [System.StringComparison]::OrdinalIgnoreCase)) {
+  throw 'Portable outputs must stay inside the desktop dist directory.'
+}
 
 if (-not (Test-Path -LiteralPath $WinUnpackedDir)) {
   throw "Missing win-unpacked build output: $WinUnpackedDir"
@@ -57,7 +65,7 @@ $DataDir = Join-Path $PortableRoot 'Data'
 $TempDir = Join-Path $PortableRoot 'Temp'
 $DownloadsDir = Join-Path $PortableRoot 'Downloads'
 $HomeDir = Join-Path $DataDir 'Home'
-$ExePath = Join-Path $AppDir 'vidbee.exe'
+$ExePath = Join-Path $AppDir 'Firaw-VidBee.exe'
 
 $paths = @(
     (Join-Path $DataDir 'Roaming'),
@@ -113,19 +121,19 @@ Set shell = CreateObject("WScript.Shell")
 Set fso = CreateObject("Scripting.FileSystemObject")
 
 scriptDir = fso.GetParentFolderName(WScript.ScriptFullName)
-ps1 = fso.BuildPath(scriptDir, "Start-VidBee-Portable.ps1")
+ps1 = fso.BuildPath(scriptDir, "Start-Firaw-VidBee-Portable.ps1")
 
 command = "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File " & Chr(34) & ps1 & Chr(34)
 shell.Run command, 0, False
 '@
 
 $Readme = @"
-VidBee portable folder
-======================
+Firaw - VidBee portable folder
+=============================
 
-Run VidBee Portable.lnk from this folder.
+Run Firaw - VidBee Portable.lnk from this folder.
 
-Do not run app\vidbee.exe directly if you want the app data to stay portable.
+Do not run app\Firaw-VidBee.exe directly if you want the app data to stay portable.
 The shortcut starts a hidden WSH launcher, which starts a hidden PowerShell
 launcher. The launcher redirects APPDATA, LOCALAPPDATA, USERPROFILE, HOME, XDG
 paths, DENO_DIR, TEMP, and TMP into this folder, and also passes a local
@@ -134,18 +142,18 @@ Chromium --user-data-dir path.
 Default download folder:
 Downloads
 
-Move this folder only while VidBee is closed. Keep the path reasonably short;
+Move this folder only while Firaw - VidBee is closed. Keep the path reasonably short;
 very deep Windows paths can fail when browser profile/cache files exist under
 Data.
 "@
 
 [System.IO.File]::WriteAllText(
-  (Join-Path $PortableDir 'Start-VidBee-Portable.ps1'),
+  (Join-Path $PortableDir 'Start-Firaw-VidBee-Portable.ps1'),
   $PowerShellLauncher,
   [System.Text.UTF8Encoding]::new($false)
 )
 [System.IO.File]::WriteAllText(
-  (Join-Path $PortableDir 'Start-VidBee-Portable.vbs'),
+  (Join-Path $PortableDir 'Start-Firaw-VidBee-Portable.vbs'),
   $VbsLauncher,
   [System.Text.Encoding]::ASCII
 )
@@ -202,24 +210,24 @@ public static class PortableShortcutMaker {
     link.SetWorkingDirectory(workDir);
     link.SetRelativePath(linkPath, 0);
     link.SetIconLocation(iconPath, 0);
-    link.SetDescription("VidBee Portable");
+    link.SetDescription("Firaw - VidBee Portable");
     ((IPersistFile)link).Save(linkPath, true);
   }
 }
 '@
 
 Add-Type -TypeDefinition $ShellLinkCode
-$ShortcutPath = Join-Path $PortableDir 'VidBee Portable.lnk'
-$VbsPath = Join-Path $PortableDir 'Start-VidBee-Portable.vbs'
-$IconPath = 'app\vidbee.exe'
+$ShortcutPath = Join-Path $PortableDir 'Firaw - VidBee Portable.lnk'
+$VbsPath = Join-Path $PortableDir 'Start-Firaw-VidBee-Portable.vbs'
+$IconPath = 'app\Firaw-VidBee.exe'
 [PortableShortcutMaker]::Create($ShortcutPath, $VbsPath, $PortableDir, $IconPath)
 
 $RequiredFiles = @(
-  'VidBee Portable.lnk',
-  'Start-VidBee-Portable.vbs',
-  'Start-VidBee-Portable.ps1',
+  'Firaw - VidBee Portable.lnk',
+  'Start-Firaw-VidBee-Portable.vbs',
+  'Start-Firaw-VidBee-Portable.ps1',
   'README-portable.txt',
-  'app\vidbee.exe',
+  'app\Firaw-VidBee.exe',
   'app\resources\app.asar'
 )
 

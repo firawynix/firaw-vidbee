@@ -12,7 +12,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 
-const DEFAULT_DOWNLOAD_DIR_FALLBACK = path.join(os.homedir(), 'Downloads', 'VidBee')
+const DEFAULT_DOWNLOAD_DIR_FALLBACK = path.join(os.homedir(), 'Downloads', 'Firaw-VidBee')
 
 export const trimEnvValue = (value: string | undefined): string | undefined => {
   const trimmed = value?.trim()
